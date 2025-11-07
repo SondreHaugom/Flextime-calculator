@@ -60,7 +60,6 @@ def calculate_flex():
             # lagrer oppdatert fleksitid til csv-fil
             df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
             df.to_csv('fleksitid.csv', index=False)
-            return fleksitid
         except ValueError:
             print("Ugyldig input. Skriv inn et tall for arbeidstimer")
 
@@ -104,7 +103,6 @@ def used_flex():
             # lagrer oppdatert fleksitid til csv-fil
             df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
             df.to_csv('fleksitid.csv', index=False)
-            return fleksitid
         except ValueError:
             print("Ugyldig input. Skriv inn et tall for brukte timer")
 
