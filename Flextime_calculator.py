@@ -14,21 +14,30 @@ def read_csv():
         fleksitid = [0.0]
     except pd.errors.EmptyDataError:
         print("Fleksitid CSV-fil er tom. Oppretter ny fil med standardverdi.")
-        return [0.0]
+        fleksitid = [0.0]
+    if not fleksitid:
+        fleksitid = [0.0]
     return fleksitid
+
+
+def to_hours_and_minutes(timer_float):
+    hours = int(timer_float)
+    minutes = int(round((timer_float - hours) * 60))
+    return f"{hours}t {minutes}m"
+
 
 # definerer funksjon for å kalkulere fleksitid
 def calculate_flex():
     # henter csv-data 
     fleksitid = read_csv()
     # definerer antall arbeidstimer per dag
-    arbeidstimer_per_dag = 7.5
+    arbeidstimer_per_dag = 7.5 
 
     # starter løkke for å hente brukerinput
     while True:
         try:
             # viser nåværende samlet fleksitid
-            print(f"Nåverende samlet fleksitid er: {fleksitid[-1]:.2f} timer")
+            print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
             # henter antall arbeidstimer fra bruker
             timer_over = input("Skriv inn antall arbeidstimer for dagen: " )
             # sjekker om brukeren ønsker å avslutte
@@ -47,16 +56,15 @@ def calculate_flex():
                 continue
             # beregner differansen og oppdaterer fleksitid
             differanse = timer_over - arbeidstimer_per_dag
-            # oppdaterer fleksitidlisten
             fleksitid.append(differanse + fleksitid[-1])
-            # skriver ut fleksitid for dagen
-            print(f"Fleksitid for dagen: {differanse:.2f} timer")
+
+            print(f"Fleksitid for dagen: {to_hours_and_minutes(differanse)}")
 
             # skriver ut fleksitid for hver dag
             for i, tid in enumerate(fleksitid):
                 # skriver ut dag og fleksitid
-                print(f"Dag {i+1}: {tid:+.2f} timer")
-            print(f"Oppdatert samlet fleksitid: {fleksitid[-1]:.2f} timer")
+              print(f"Dag {i+1}: {to_hours_and_minutes(tid)}")
+            print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
             # lagrer oppdatert fleksitid til csv-fil
             df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
             df.to_csv('fleksitid.csv', index=False)
@@ -72,7 +80,8 @@ def used_flex():
     # viser nåværende samlet fleksitid
     if fleksitid is not None:
     
-        print(f"Nåverende samlet fleksitid er: {fleksitid[-1]:.2f} timer")
+        print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
+
     # hondterer tilfelle uten fleksitid
     else:
         print("Ingen fleksitid tilgjengelig.")
@@ -91,14 +100,14 @@ def used_flex():
             # oppdaterer fleksitidlisten
             fleksitid.append(fleksitid[-1] - brukte_timer)
             # skriver ut brukte timer
-            print(f"Brukte fleksitimer: {brukte_timer:.2f} timer")
+            print(f"Brukte fleksitimer: {to_hours_and_minutes(fleksitid[-1])}")
 
             # skriver ut fleksitid for hver dag
             for i, tid in enumerate(fleksitid):
                 # skriver ut dag og fleksitid
-                print(f"Dag {i+1}: {tid:+.2f} timer")
+                print(f"Dag {i+1}: {to_hours_and_minutes(tid)}")
             # skriver ut oppdatert samlet fleksitid
-            print(f"Oppdatert samlet fleksitid: {fleksitid[-1]:.2f} timer")
+            print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
 
             # lagrer oppdatert fleksitid til csv-fil
             df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
@@ -108,17 +117,13 @@ def used_flex():
 
 
 # hovedprogrammet
-while True:
-    # starter hovedmeny
-    if __name__ == "__main__":
-        # hovedmeny tekst
+def main_menu():
+    while True:
         print("Velkommen til Fleksitidskalkulatoren!")
-        # menyvalg
-        print("Legge til arbeidstimer (1) eller registrere brukte fleksitimer (2)? ")
-        # meny input
-        svar = input("Skriv inn ditt svar: ")
-        # sjekker menyvalg
-        if svar == "exit" or svar == "quit":
+        print("Legge til arbeidstimer (1) eller registrere brukte fleksitimer (2)?")
+        svar = input("Skriv inn ditt svar (1/2) eller 'exit' for å avslutte: ").strip().lower()
+
+        if svar in ("exit", "quit", "q"):
             print("Avslutter programmet.")
             break
         elif svar == "1":
@@ -126,4 +131,7 @@ while True:
         elif svar == "2":
             used_flex()
         else:
-            print("Ugyldig svar. Vennligst skriv '1' eller '2'.")
+            print("Ugyldig svar. Vennligst skriv '1' eller '2'.\n")
+
+if __name__ == "__main__":
+    main_menu()
