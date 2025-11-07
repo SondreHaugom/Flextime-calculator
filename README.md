@@ -1,62 +1,94 @@
-# Fleksitidskalkulator
+# 🕒 Fleksitidskalkulator  
 
-Laget av Sondre Haugom
+**Laget av Sondre Haugom**  
 
-Dette programmet lar deg **registrere og holde oversikt over oppspart fleksitid** i en arbeidsuke, samt registrere timer du tar ut som fleksitid. All informasjon lagres automatisk i en CSV-fil slik at du enkelt kan fortsette der du slapp.
+Et brukervennlig Python-program som lar deg **registrere, beregne og holde oversikt over fleksitid** i løpet av arbeidsuker.  
+Du kan både legge til arbeidstimer og trekke fra brukte (uttatte) fleksitimer.  
+All informasjon lagres automatisk i en CSV-fil slik at du alltid kan fortsette der du slapp.  
 
-## Hovedfunksjoner
+---
 
-- Legg til arbeidstimer for en dag og beregn differanse mot standard arbeidsdag (7,5 timer).
-- Se oppdatert og historisk fleksitid for hver dag.
-- Registrer brukte (uttatte) fleksitimer, og få full oversikt over saldo.
-- All data lagres automatisk i og leses fra en CSV-fil (`fleksitid.csv`).
+## 🚀 Hovedfunksjoner  
 
-## Filstruktur
+- 🧮 **Registrer arbeidstimer** for en dag og beregn differansen mot standard arbeidsdag (7,7 timer).  
+- 📊 **Se oppdatert og historisk fleksitid** for hver dag.  
+- ⏳ **Registrer brukte fleksitimer** og få full oversikt over saldoen.  
+- 💾 **Automatisk lagring** og henting av data fra en CSV-fil (`fleksitid.csv`).  
+- ⚠️ **Feilhåndtering** for ugyldig input, tom fil og manglende data.  
 
-- **fleksitid.csv** – lagrer alle verdier for fleksitid.
-- **Python-koden** – inneholder funksjoner for å registrere og bruke fleksitid.
+---
 
+## 📁 Filstruktur  
+
+| Fil | Beskrivelse |
+|-----|--------------|
+| `fleksitid.csv` | Lagrer all fleksitidsinformasjon automatisk. Opprettes ved første kjøring. |
+| `fleksitid.py` | Hovedfilen som inneholder funksjonene for registrering og bruk av fleksitid. |
+
+---
+
+## 🧩 Krav  
+
+- Python **3.8** eller nyere  
+- Bibliotek: **pandas**
+
+Installer `pandas` ved å skrive i terminalen:  
+```bash
+pip install pandas
+
+```
 ## Bruk
+``` 
+python fleksitid.py
+``` 
 
-1. Kjør programmet:
-    ```bash
-    python <navn_på_kodefil.py>
-    ```
+# Velg et alternativ i menyen:
+- Tast 1 for å registrere arbeidstimer for en dag.
 
-2. Velg menyvalg:
-    - Tast **1** for å registrere arbeidstimer for en dag.
-    - Tast **2** for å registrere brukte fleksitimer.
-    - Tast **exit** eller **quit** for å avslutte programmet.
+- Tast 2 for å registrere brukte fleksitimer.
 
-3. Følg instruksjonene på skjermen for å legge inn timer (kun verdier mellom 7,5 og 12,5 godtas).
+- Tast exit eller quit for å avslutte programmet.
+
+# Følg instruksjonene på skjermen
+- Kun numeriske verdier mellom 7.5 og 12.5 godtas som gyldige arbeidstimer.
 
 ## Eksempel på bruk
-```
+``` 
 Velkommen til Fleksitidskalkulatoren!
 Legge til arbeidstimer (1) eller registrere brukte fleksitimer (2)?
-Skriv inn ditt svar: 1
-Nåverende samlet fleksitid er: 2.00 timer
+Skriv inn ditt svar (1/2) eller 'exit' for å avslutte: 1
+Nåverende samlet fleksitid er: 2t 0m
 Skriv inn antall arbeidstimer for dagen: 8
-Fleksitid for dagen: 0.50 timer
-Dag 1: +0.00 timer
-Dag 2: +0.50 timer
-Oppdatert samlet fleksitid: 2.50 timer
+Fleksitid for dagen: 0t 18m
+Dag 1: 0t 0m
+Dag 2: 0t 18m
+Oppdatert samlet fleksitid: 2t 18m
+
 ```
 
-## Forutsetninger
+Etter kjøring vil filen fleksitid.csv inneholde:
 
-- Programmet er testet i Python 3 og krever at `pandas`-biblioteket er installert.
-- Om **fleksitid.csv** ikke finnes eller er tom ved oppstart, opprettes den automatisk.
-- Kun numeriske verdier mellom 7.5 og 12.5 godtas for arbeidstimer.
+``` 
+Fleksitid
+0.0
+0.3
+2.3
+```
 
-## Videreutvikling
+## ⚙️ Forutsetninger
+- Programmet er utviklet for Python 3.x.
+- Om fleksitid.csv ikke finnes eller er tom, opprettes den automatisk.
+- All fleksitid lagres som flyttall (timer), men vises i timer og minutter i konsollen.
 
-Dette er et enkelt fleksitidsverktøy for lærlingoppgaver. Programmet kan forbedres ved å:
-- Tillate registering av flere dager samtidig (for eksempel en hel uke).
-- Legge til dato eller ukedag på hver føring.
-- Bedre håndtering av feilsituasjoner, som f.eks. ugyldig/tom fil.
-- Lage en egen rapport/utskrift over utviklingen over tid.
+## 🧠 Videreutvikling
+Mulige forbedringer i fremtidige versjoner:
+- 📅 Legge til dato og ukedag for hver registrering.
+- 📆 Mulighet for å registrere flere dager samtidig (f.eks. en hel uke).
+- 🧾 Generere rapporter eller grafer over fleksitidsutviklingen.
+- 🧱 Forbedret feilkontroll og robusthet mot ugyldige filer.
+- 🌐 Enkel GUI- eller webversjon for mer brukervennlig opplevelse.
 
-## Lisens
+## 🪪 Lisens
+Koden er utviklet av Sondre Haugom som del av en lærlingperiode.
+Den kan brukes fritt til læring, utvikling og forbedring, så lenge opphav nevnes.
 
-Koden er laget av Sondre Haugom som del av lærlingperiode og kan brukes fritt til læring og utvikling.
