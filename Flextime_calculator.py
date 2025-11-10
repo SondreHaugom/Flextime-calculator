@@ -31,7 +31,7 @@ def calculate_flex():
     # henter csv-data 
     fleksitid = read_csv()
     # definerer antall arbeidstimer per dag
-    arbeidstimer_per_dag = 7.7
+    arbeidstimer_per_dag = 7.75
 
     # starter løkke for å hente brukerinput
     while True:
