@@ -51,8 +51,8 @@ def calculate_flex():
             except ValueError:
                 print("Ugyldig input. Skriv inn et tall for arbeidstimer")
                 continue
-            if timer_over < 7.5 or timer_over > 12.5:
-                print("Ugyldig input. Timer må være mellom 7.5 og 12.5.")
+            if timer_over < 7.75 or timer_over > 9:
+                print("Ugyldig input. Timer må være mellom 7.75 og 9.")
                 continue
             # beregner differansen og oppdaterer fleksitid
             differanse = timer_over - arbeidstimer_per_dag
