@@ -42,7 +42,7 @@ def calculate_flex():
             timer_over = input("Skriv inn antall arbeidstimer for dagen: " )
             # sjekker om brukeren ønsker å avslutte
             if timer_over.lower() in ['exit', 'quit']:
-                print("Avslutter kalkulatoren.")
+                print("Avbryter tilføringen.")
                 break
             try:
                 # konverterer input til float
@@ -93,7 +93,7 @@ def used_flex():
             brukte_timer = input("Skriv inn antall brukte fleksitimer: ")
             # sjekker om brukeren ønsker å avslutte
             if brukte_timer.lower() in ['exit', 'quit']:
-                print("Avslutter kalkulatoren.")
+                print("Avbryter prosessen.")
                 break
             # konverterer input til float
             brukte_timer = float(brukte_timer)
