@@ -4,6 +4,15 @@
 # importerer pandas som pd 
 import pandas as pd
 
+# deklarerer ukedager 
+ukedager = [
+    "Mandag",
+    "Tisdag",
+    "Onsdag",
+    "Torsdag",
+    "Fredag",
+]
+
 # dewfinerer funksjon for å lese csv-fil
 def read_csv(): 
     # leser fleksitid fra csv-fil
@@ -28,43 +37,46 @@ def calculate_flex():
     arbeidstimer_per_dag = 7.75
 
     # starter løkke for å hente brukerinput
-    while True:
-        try:
-            # viser nåværende samlet fleksitid
+    for dag in ukedager:
+        # kjører input-prosessen i en løkke for å sikre gyldig input
+        while True: 
+            # printer nåværende fleksitid
             print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
-            # henter antall arbeidstimer fra bruker
-            timer_over = input("Skriv inn antall arbeidstimer for dagen: " )
-            # sjekker om brukeren ønsker å avslutte
-            if timer_over.lower() in ['exit', 'quit']:
+            # ber brukeren om å skrive inn antall arbeidstimer for dagen
+            timer_over = input(f"Skriv inn antall arbeidstimer for {dag}: " )
+            # sjekker om brukeren ønsker å avbryte
+            if timer_over.lower() in ['exit', 'quit', 'q']:
                 print("Avbryter tilføringen.")
-                break
+                return
+            # prøver å konvertere input til float
             try:
                 # konverterer input til float
                 timer_over = float(timer_over)
-            # håndterer ugyldig input
+                # sjekker om input er gyldig
             except ValueError:
-                print("Ugyldig input. Skriv inn et tall for arbeidstimer")
+                print("Ugyldig input. Skriv inn et tall for arbeidstimer prøv igjen.")
                 continue
+            # sjekker om timer er mellom 7.75 og 9
             if timer_over < 7.75 or timer_over > 9:
                 print("Ugyldig input. Timer må være mellom 7.75 og 9.")
                 continue
-            # beregner differansen og oppdaterer fleksitid for å regne ut mengden fleks 
-            differanse = timer_over - arbeidstimer_per_dag
-            # oppdaterer fleksitidlisten
-            fleksitid.append(differanse + fleksitid[-1])
+            # bryter løkken hvis input er gyldig
+            break
+        # beregner differanse mellom innrapporterte timer og standard arbeidstimer
+        differanse = timer_over - arbeidstimer_per_dag
+        # oppdaterer fleksitid med den nye differansen
+        fleksitid.append(differanse + fleksitid[-1])
+        # printer fleksitid for dagen og oppdatert samlet fleksitid
+        
+        # oppdaterer csv-filen med ny fleksitid
+        df = pd.DataFrame(fleksitid, columns=['Fleksitid'])
+        df.to_csv('fleksitid.csv', index=False)
+        print(f"Fleksitid for {dag}: {to_hours_and_minutes(differanse)}")
+        print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
+        
 
-            print(f"Fleksitid for dagen: {to_hours_and_minutes(differanse)}")
 
-            # skriver ut fleksitid for hver dag
-            for i, tid in enumerate(fleksitid):
-                # skriver ut dag og fleksitid
-              print(f"Dag {i+1}: {to_hours_and_minutes(tid)}")
-            print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
-            # lagrer oppdatert fleksitid til csv-fil
-            df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
-            df.to_csv('fleksitid.csv', index=False)
-        except ValueError:
-            print("Ugyldig input. Skriv inn et tall for arbeidstimer")
+                    
 
 
 
@@ -94,36 +106,43 @@ def used_flex():
         print("Ingen fleksitid tilgjengelig.")
 
     # starter løkke for å hente brukerinput    
-    while True:
-        try:
-            # hente antall brukte timer fra bruker
-            brukte_timer = input("Skriv inn antall brukte fleksitimer: ")
-            # sjekker om brukeren ønsker å avslutte
-            if brukte_timer.lower() in ['exit', 'quit']:
-                print("Avbryter prosessen.")
-                break
-            elif float(brukte_timer) < 0 or float(brukte_timer) > 9:
+    for dag in ukedager:
+        # kjører input-prosessen i en løkke for å sikre gyldig input
+        while True:
+            # printer nåværende fleksitid
+            print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
+            # ber brukeren om å skrive inn antall brukte flekstimer for dagen
+            timer_brukt = input(f"Skriv inn antall brukte fleksitimer for {dag}: ")
+            # sjekker om brukeren ønsker å avbryte
+            if timer_brukt.lower() in ['exit', 'quit', 'q']:
+                print("Avbryter tilføringen.")
+                return
+            # prøver å konvertere input til float
+            try:
+                # konverterer input til float
+                timer_brukt = float(timer_brukt)
+            # håndterer feil hvis input ikke kan konverteres til float
+            except ValueError:
+                print("Ugyldig input. Skriv inn et tall for brukte flekstimer prøv igjen.")
+                continue
+            if timer_brukt < 0 or timer_brukt > 9:
                 print("Ugyldig input. Timer må være mellom 0 og 9.")
                 continue
-            # konverterer input til float
-            brukte_timer = float(brukte_timer)
-            # oppdaterer fleksitidlisten
-            fleksitid.append(fleksitid[-1] - brukte_timer)
-            # skriver ut brukte timer
-            print(f"Brukte fleksitimer: {to_hours_and_minutes(fleksitid[-1])}")
+            # bryter løkken hvis input er gyldig
+            break
+        # definerer variabel for brukte timer
+        brukte_timer = timer_brukt
+        # oppdaterer fleksitid ved å trekke fra brukte timer
+        fleksitid.append(fleksitid[-1] - brukte_timer)
+        # skriver ut brukte flekstimer og oppdatert samlet fleksitid
 
-            # skriver ut fleksitid for hver dag
-            for i, tid in enumerate(fleksitid):
-                # skriver ut dag og fleksitid
-                print(f"Dag {i+1}: {to_hours_and_minutes(tid)}")
-            # skriver ut oppdatert samlet fleksitid
-            print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
+        # oppdaterer csv-filen med ny fleksitid
+        df = pd.DataFrame(fleksitid, columns=['Fleksitid'])
+        df.to_csv('fleksitid.csv', index=False)
 
-            # lagrer oppdatert fleksitid til csv-fil
-            df = pd.DataFrame(fleksitid, columns=["Fleksitid"])
-            df.to_csv('fleksitid.csv', index=False)
-        except ValueError:
-            print("Ugyldig input. Skriv inn et tall for brukte timer")
+        print(f"Brukte flekstimer for {dag}: {to_hours_and_minutes(brukte_timer)}")
+        print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
+ 
 
 
 # hovedprogrammet
@@ -135,7 +154,7 @@ def main_menu():
 
         if svar in ("exit", "quit", "q"):
             print("Avslutter programmet.")
-            break
+            return
         elif svar == "1":
             calculate_flex()
         elif svar == "2":
