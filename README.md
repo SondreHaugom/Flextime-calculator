@@ -10,7 +10,7 @@ All informasjon lagres automatisk i en CSV-fil slik at du alltid kan fortsette d
 
 ## 🚀 Hovedfunksjoner  
 
-- 🧮 **Registrer arbeidstimer** for en dag og beregn differansen mot standard arbeidsdag (7,7 timer).  
+- 🧮 **Registrer arbeidstimer for hver ukedag** for hver dag uka vil du kunne legge til å fjerne flekstimer.  
 - 📊 **Se oppdatert og historisk fleksitid** for hver dag.  
 - ⏳ **Registrer brukte fleksitimer** og få full oversikt over saldoen.  
 - 💾 **Automatisk lagring** og henting av data fra en CSV-fil (`fleksitid.csv`).  
@@ -57,12 +57,12 @@ python fleksitid.py
 Velkommen til Fleksitidskalkulatoren!
 Legge til arbeidstimer (1) eller registrere brukte fleksitimer (2)?
 Skriv inn ditt svar (1/2) eller 'exit' for å avslutte: 1
-Nåverende samlet fleksitid er: 2t 0m
-Skriv inn antall arbeidstimer for dagen: 8
-Fleksitid for dagen: 0t 18m
-Dag 1: 0t 0m
-Dag 2: 0t 18m
-Oppdatert samlet fleksitid: 2t 18m
+Nåverende samlet fleksitid er: 17t 47m
+Skriv inn antall arbeidstimer for Mandag: 8
+Fleksitid for Mandag: 0t 15m
+Oppdatert samlet fleksitid: 18t 2m
+Nåverende samlet fleksitid er: 18t 2m
+Skriv inn antall arbeidstimer for Tisdag: 
 
 ```
 
