@@ -93,14 +93,6 @@ def to_hours_and_minutes(timer_float):
 def used_flex():
     # henter csv-data
     fleksitid = read_csv()
-    # viser nåværende samlet fleksitid
-    if fleksitid is not None:
-    
-        print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
-
-    # hondterer tilfelle uten fleksitid
-    else:
-        print("Ingen fleksitid tilgjengelig.")
 
     # starter løkke for å hente brukerinput    
     for dag in ukedager:
