@@ -20,12 +20,6 @@ def read_csv():
     return fleksitid
 
 
-def to_hours_and_minutes(timer_float):
-    hours = int(timer_float)
-    minutes = int(round((timer_float - hours) * 60))
-    return f"{hours}t {minutes}m"
-
-
 # definerer funksjon for å kalkulere fleksitid
 def calculate_flex():
     # henter csv-data 
@@ -54,8 +48,9 @@ def calculate_flex():
             if timer_over < 7.75 or timer_over > 9:
                 print("Ugyldig input. Timer må være mellom 7.75 og 9.")
                 continue
-            # beregner differansen og oppdaterer fleksitid
+            # beregner differansen og oppdaterer fleksitid for å regne ut mengden fleks 
             differanse = timer_over - arbeidstimer_per_dag
+            # oppdaterer fleksitidlisten
             fleksitid.append(differanse + fleksitid[-1])
 
             print(f"Fleksitid for dagen: {to_hours_and_minutes(differanse)}")
@@ -70,6 +65,18 @@ def calculate_flex():
             df.to_csv('fleksitid.csv', index=False)
         except ValueError:
             print("Ugyldig input. Skriv inn et tall for arbeidstimer")
+
+
+
+# definerer en funksjon for å konvertere desimaler til timer og minutter
+def to_hours_and_minutes(timer_float):
+    # deklarerer en variabel for timer og minutter
+    hours = int(timer_float)
+    # beregner antall timer og minutter
+    minutes = int(round((timer_float - hours) * 60))
+    # returnerer formatert streng med timer og minutter
+    return f"{hours}t {minutes}m"
+
 
 
 
@@ -95,6 +102,9 @@ def used_flex():
             if brukte_timer.lower() in ['exit', 'quit']:
                 print("Avbryter prosessen.")
                 break
+            elif float(brukte_timer) < 0 or float(brukte_timer) > 9:
+                print("Ugyldig input. Timer må være mellom 0 og 9.")
+                continue
             # konverterer input til float
             brukte_timer = float(brukte_timer)
             # oppdaterer fleksitidlisten
