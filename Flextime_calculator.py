@@ -42,7 +42,7 @@ def calculate_flex():
             # printer nåværende fleksitid
             print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
             # ber brukeren om å skrive inn antall arbeidstimer for dagen
-            timer_over = input(f"Skriv inn antall arbeidstimer for {dag}: " )
+            timer_over = input(f"Skriv inn antall arbeidstimer for {dag}: ")
             # sjekker om brukeren ønsker å avbryte
             if timer_over.lower() in ['exit', 'quit', 'q']:
                 print("Avbryter tilføringen.")
@@ -84,6 +84,7 @@ def to_hours_and_minutes(timer_float):
     minutes = int(round((timer_float - hours) * 60))
     # returnerer formatert streng med timer og minutter
     return f"{hours}t {minutes}m"
+
 
 
 
