@@ -6,7 +6,7 @@ import pandas as pd
 # deklarerer ukedager 
 ukedager = [
     "Mandag",
-    "Tisdag",
+    "Tirsdag",
     "Onsdag",
     "Torsdag",
     "Fredag",
@@ -20,9 +20,6 @@ def read_csv():
     # håndterer feil hvis filen ikke finnes
     except FileNotFoundError:
         fleksitid = [0.0]
-    except pd.errors.EmptyDataError:
-        print("Fleksitid CSV-fil er tom. Oppretter ny fil med standardverdi.")
-        fleksitid = [0.0]
     if not fleksitid:
         fleksitid = [0.0]
     return fleksitid
@@ -33,7 +30,7 @@ def calculate_flex():
     # henter csv-data 
     fleksitid = read_csv()
     # definerer antall arbeidstimer per dag
-    arbeidstimer_per_dag = 7.75
+    arbeidstimer_per_dag = 7.50
 
     # starter løkke for å hente brukerinput
     for dag in ukedager:
@@ -55,9 +52,9 @@ def calculate_flex():
             except ValueError:
                 print("Ugyldig input. Skriv inn et tall for arbeidstimer prøv igjen.")
                 continue
-            # sjekker om timer er mellom 7.75 og 9
-            if timer_over < 7.75 or timer_over > 9:
-                print("Ugyldig input. Timer må være mellom 7.75 og 9.")
+            # sjekker om timer er mellom 7.50 og 9
+            if timer_over < 7.50 or timer_over > 9:
+                print("Ugyldig input. Timer må være mellom 7.50 og 9.")
                 continue
             # bryter løkken hvis input er gyldig
             break
