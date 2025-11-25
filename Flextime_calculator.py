@@ -1,6 +1,5 @@
 # Lagte av Sondre Haugom
 
-
 # importerer pandas som pd 
 import pandas as pd
 # deklarerer ukedager 
@@ -52,9 +51,9 @@ def calculate_flex():
             except ValueError:
                 print("Ugyldig input. Skriv inn et tall for arbeidstimer prøv igjen.")
                 continue
-            # sjekker om timer er mellom 7.50 og 9
-            if timer_over < 7.50 or timer_over > 9:
-                print("Ugyldig input. Timer må være mellom 7.50 og 9.")
+            # sjekker om timer er mellom 7.50 og 10
+            if timer_over < 7.50 or timer_over > 10:
+                print("Ugyldig input. Timer må være mellom 7.50 og 10.")
                 continue
             # bryter løkken hvis input er gyldig
             break
