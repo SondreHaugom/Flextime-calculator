@@ -73,7 +73,7 @@ Skriv inn antall arbeidstimer for Tirsdag:
 
 ```
 
-Etter kjøring vil filen fleksitid.csv inneholde:
+Etter kjøring vil databasen inneholde:
 
 ![Skjermbilde av programmet](Skjermbilde%202025-11-26%20151045.png)
 
