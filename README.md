@@ -75,10 +75,7 @@ Skriv inn antall arbeidstimer for Tirsdag:
 
 Etter kjøring vil filen fleksitid.csv inneholde:
 
-``` 
-![Beskrivelse av bildet](Skjermbilde 2025-11-26 151045.png)
-
-```
+![Skjermbilde av programmet](Skjermbilde%202025-11-26%20151045.png)
 
 ## ⚙️ Forutsetninger
 - Programmet er utviklet for Python 3.x.
