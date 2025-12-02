@@ -2,7 +2,6 @@
 # importerer pandas som pd 
 import pandas as pd
 from fleksdb.database import get_connection, get_last_balance
-from utils.time_utils import to_hours_and_minutes
 
     # deklarerer ukedager
 ukedager = [
@@ -30,7 +29,7 @@ def calculate_flex():
         # en while løkke for å få gyldig input fra brukeren
         while True:
             # viser nåværende fleksitid
-            print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
+            print(f"Nåverende samlet fleksitid er: {fleksitid[-1]}")
             # ber brukeren om å skrive inn antall arbeidstimer for dagen
             timer_over = input(f"Skriv inn antall arbeidstimer for {dag}: ")
             # sjekker om brukeren ønsker å avbryte
@@ -90,7 +89,7 @@ def used_flex():
         # en while løkke for å få gyldig input fra brukeren
         while True:
             # viser nåværende fleksitid
-            print(f"Nåverende samlet fleksitid er: {to_hours_and_minutes(fleksitid[-1])}")
+            print(f"Nåverende samlet fleksitid er: {fleksitid[-1]}")
             # ber brukeren om å skrive inn antall brukte fleksitimer for dagen
             timer_brukt = input(f"Skriv inn antall bruke fleksitimer for {dag}: ")
             # sjekker om brukeren ønsker å avbryte
