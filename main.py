@@ -71,7 +71,7 @@ def calculate_flex():
         conn.commit()
         # skriver ut resultatet for dagen
         print(f"    → {dag} {timer_over} t (differanse: {difference:+.2f} t)")
-        print(f"Oppdatert samlet fleksitid: {to_hours_and_minutes(fleksitid[-1])}")
+        print(f"Oppdatert samlet fleksitid: {fleksitid[-1]}")
         
 
 
