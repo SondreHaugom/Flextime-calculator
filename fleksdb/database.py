@@ -1,5 +1,5 @@
 import sqlite3
-
+from turtle import pd
 # deklarerer databasebane
 DB_PATH = "fleks.db"   
 
@@ -10,7 +10,6 @@ def get_connection():
     # oppretter tabellen hvis den ikke finnes
     conn.execute("""CREATE TABLE IF NOT EXISTS fleksitid (
                        id        INTEGER PRIMARY KEY AUTOINCREMENT, 
-                       timestamp TEXT    NOT NULL, 
                        type      TEXT    NOT NULL CHECK (type IN ('INN','UT')), 
                        timer     REAL    NOT NULL, 
                        balanse   REAL    NOT NULL, 
@@ -37,3 +36,14 @@ def get_last_balance():
         return result[0]
     else:
         return 0.0
+    
+
+def db_insert(type, timer, balanse, kommentar):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO fleksitid (type, timer, balanse, kommentar) VALUES (?, ?, ?, ?);",
+        (type, timer, balanse, kommentar)
+    )
+    conn.commit()
+    conn.close()

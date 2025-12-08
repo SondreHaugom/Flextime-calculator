@@ -2,3 +2,5 @@ __pycache__
 .github
 .venv
 fleks.db
+versjon1.0.py
+test.py

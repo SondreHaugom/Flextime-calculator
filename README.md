@@ -75,7 +75,8 @@ Skriv inn antall arbeidstimer for Tirsdag:
 
 Etter kjøring vil databasen inneholde:
 
-![Skjermbilde av programmet](Skjermbilde%202025-11-26%20151045.png)
+![Skjermbilde av programmet](Skjermbilde2025-12-08085837.png)
+![Skjermbilde av programmet](Skjermbilde2025-12-08085901.png)
 
 ## ⚙️ Forutsetninger
 - Programmet er utviklet for Python 3.x.
