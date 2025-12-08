@@ -55,6 +55,9 @@ def calculate_flex():
         for dag in ukedager:
             if svar == "1":
                 timer_over = user_input(dag)
+                if timer_over is None:  # Brukeren vil avslutte
+                    conn.close()
+                    return
                 difference = timer_over - arbeidstimer_per_dag
                 fleksitid.append(fleksitid[-1] + difference)
                 print(f"    → {dag} {timer_over} t (differanse: {difference:+.2f} t)")
@@ -63,6 +66,9 @@ def calculate_flex():
                 db_insert('INN', timer_over, fleksitid[-1], f'Arbeidstimer for {dag}')
             elif svar == "2":
                 timer_brukt = user_input(dag)
+                if timer_brukt is None:  # Brukeren vil avslutte
+                    conn.close()
+                    return
                 brukte_timer = timer_brukt
                 # oppdaterer  fleksitid listen
                 fleksitid.append(fleksitid[-1] - brukte_timer)
