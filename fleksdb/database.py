@@ -1,5 +1,4 @@
 import sqlite3
-from turtle import pd
 # deklarerer databasebane
 DB_PATH = "fleks.db"   
 
@@ -36,7 +35,6 @@ def get_last_balance():
         return result[0]
     else:
         return 0.0
-    
 
 def db_insert(type, timer, balanse, kommentar):
     conn = get_connection()
